@@ -5,8 +5,6 @@ import foods from './foods.json'
 import FoodBox from './component/FoodBox'
 import AddFood from './component/addFood'
 
-
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -68,22 +66,6 @@ class App extends Component {
 
     let input = this.state.name
 
-    // transform first capital lettler
-    const titleize = text => {
-      if (text !== '') {
-        var words = text.toLowerCase().split(" ");
-        for (var a = 0; a < words.length; a++) {
-          var w = words[a];
-          if (w[0] !== undefined) {
-            words[a] = w[0].toUpperCase() + w.slice(1);
-          }
-        }
-        return words.join(" ");
-
-      }
-      return ""
-    }
-
     return (
       <div className="App">
         <div className="has-text-centered content">
@@ -99,7 +81,7 @@ class App extends Component {
         <AddFood addTheFood={this.addFoodHandler} />
         <div className="columns">
           <div className="column is-three-fifths">
-            {this.state.list.filter((el) => el.name.includes(titleize(input))).map((el, idx) => (
+            {this.state.list.filter((el) => el.name.toLowerCase().includes(input.toLowerCase())).map((el, idx) => (
               <FoodBox
                 key={idx}
                 name={el.name}
