@@ -9,7 +9,8 @@ class AddFood extends Component {
         this.state = {
             name: '',
             calories: '',
-            modalState: false
+            modalState: false,
+            quantity: 0
 
         }
         this.toggleModal = this.toggleModal.bind(this);
@@ -33,12 +34,14 @@ class AddFood extends Component {
                 name: '',
                 calories: '',
                 image: '',
+                quantity: 0
             })
         }
     }
 
     handleChange(event) {
         let { name, value } = event.target;
+        console.log(this.state.quantity)
         // console.log('==>',this.state.name)
         this.setState({ [name]: value });
     }
@@ -74,6 +77,7 @@ class AddFood extends Component {
                                     <div className="control">
                                         <input className="input" type="text" name="image" value={this.state.image} onChange={(e) => this.handleChange(e)} />
                                     </div>
+                                    <input type="hidden" className="input" name="quantity" value={this.state.quantity} onChange={e => this.inputHandler(e)} />
                                 </div>
                                 <div className="control">
                                     <input className="button is-primary" type="submit" value="Submit" />
