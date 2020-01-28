@@ -33,8 +33,7 @@ class AddFood extends Component {
             this.setState({
                 name: '',
                 calories: '',
-                image: '',
-                quantity: 0
+                image: ''
             })
         }
     }
@@ -77,7 +76,6 @@ class AddFood extends Component {
                                     <div className="control">
                                         <input className="input" type="text" name="image" value={this.state.image} onChange={(e) => this.handleChange(e)} />
                                     </div>
-                                    <input type="hidden" className="input" name="quantity" value={this.state.quantity} onChange={e => this.inputHandler(e)} />
                                 </div>
                                 <div className="control">
                                     <input className="button is-primary" type="submit" value="Submit" />

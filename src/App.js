@@ -4,6 +4,7 @@ import './App.css';
 import foods from './foods.json'
 import FoodBox from './component/FoodBox'
 import AddFood from './component/addFood'
+import TodaysFoods from './component/TodaysFood'
 
 class App extends Component {
   constructor(props) {
@@ -96,13 +97,13 @@ class App extends Component {
             <div className="column content">
               <h2 className="subtitle">Today's foods</h2>
               <ul>
-                {items.map((item, idx) => (
-                  <li key={idx}>
-                    {item.quantity} {item.name} = {item.calories * item.quantity} cal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button className="button is-danger is-small is-outlined" onClick={() => this.removeItem(idx)}>
-                      Remove
-                  </button>
-                  </li>
+                {items.map((el, idx) => (
+                  <TodaysFoods
+                  key={idx}
+                  name={el.name}
+                  calories={el.calories}
+                  quantity={el.quantity}
+                  />
                 ))}
               </ul>
               <strong>Total: {items.reduce((acc, item) => (acc += item.calories * item.quantity), 0)} cal</strong>
