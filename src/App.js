@@ -4,7 +4,6 @@ import './App.css';
 import foods from './foods.json'
 import FoodBox from './component/FoodBox'
 import AddFood from './component/addFood'
-import TodaysFoods from './component/TodaysFood'
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +11,7 @@ class App extends Component {
     this.state = {
       list: this.getData(),
       name: '',
-      items: []
+      items: [],
     }
     this.addFoodItem = this.addFoodItem.bind(this);
   }
@@ -40,11 +39,11 @@ class App extends Component {
     const hasItem = items.some(el => el.name === value.name);
     if (!hasItem) {
       items.push(value);
-      console.log(items[0].quantity - 1)
+
     } else {
       for (let idx = 0; idx < items.length; idx += 1) {
         if (items[idx].name === value.name) {
-          items[idx].quantity += value.quantity;
+          items[idx].quantity += value.quantity
           break;
         }
       }
@@ -88,7 +87,7 @@ class App extends Component {
                 name={el.name}
                 calories={el.calories}
                 image={el.image}
-                quantity={el.quantity + 1}
+                quantity={el.quantity += 1}
                 add={this.addFoodItem}
               />
             ))}
@@ -97,13 +96,13 @@ class App extends Component {
             <div className="column content">
               <h2 className="subtitle">Today's foods</h2>
               <ul>
-                {items.map((el, idx) => (
-                  <TodaysFoods
-                  key={idx}
-                  name={el.name}
-                  calories={el.calories}
-                  quantity={el.quantity}
-                  />
+                {items.map((item, idx) => (
+                  <li className="width" key={idx}>
+                    <p >{item.quantity} {item.name} = {item.calories * item.quantity} cal</p>
+                  <button className="button is-danger is-small is-outlined" onClick={() => this.removeItem(idx)}>
+                      Remove
+                  </button>
+                  </li>
                 ))}
               </ul>
               <strong>Total: {items.reduce((acc, item) => (acc += item.calories * item.quantity), 0)} cal</strong>

@@ -9,9 +9,9 @@ class FoodBox extends Component {
     }
 
     inputHandler(e) {
-        const { name, value } = e.target;
+        const { name,  value } = e.target;
         this.setState({
-          [name]: value
+          [name]: parseInt(value)
         });
       }
 
@@ -38,7 +38,7 @@ class FoodBox extends Component {
                     <div className="media-right">
                         <div className="field has-addons">
                             <div className="control">
-                            <input type="number" className="input" name="quantity" value={quantity} onChange={e => this.inputHandler(e)} />
+                            <input type="number" className="input" name="quantity" value={ quantity} onChange={e => this.inputHandler(e)} />
                             </div>
                             <div className="control">
                                 <button className="button is-info" onClick={() => add({ quantity, name, calories })}>+</button>
@@ -47,8 +47,6 @@ class FoodBox extends Component {
                     </div>
                 </article>
             </div>
-
-
         );
     }
 }
